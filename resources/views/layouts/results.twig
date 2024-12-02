@@ -1,21 +1,40 @@
 {% extends 'app.twig' %}
 
-<h1>Results</h1>
+{% block title %}Company search results{% endblock %}
 
-<p>You matched with <!-- NUMBER OF COMPANIES MATCHED --> </p>
+{% block content %}
+<h1 class="matches__title">Results</h1>
 
-<div class="matches">
-    {% for company in matchedCompanies %}
-        <div class="matches__match">
-            <h3>{{ company.name }}</h3>
-            <p>{{ company.description }}</p>
-            <a href="#" class="matches__match__more">more</a>
-
-            <div class="match__match__details" style="display:none">
-                <p><strong>Email:</strong> {{ company.email }}</p>
-                <p><strong>Phone:</strong> {{ company.phone }}</p>
-                <p><strong>Website:</strong> {{ company.website }}</p>
-            </div>
-        </div>
-    {% endfor %}
+{% if matchedCompanies|length == 0 %}
+<div class="error">
+    <p>Sorry, we were unable to find any companies in your area.</p>
 </div>
+{% else %}
+    <p>You matched with {{ matchedCompanies|length }} companies</p>
+    <div class="matches">
+        {% for company in matchedCompanies %}
+            {% if company.name is defined %}
+                <div class="matches__match">
+                    <h3 class="matches__match__title">{{ company.name }}</h3>
+                    {% if company.description is defined %}
+                        <p class="matches__match__description">{{ company.description }}</p>
+                    {% endif %}
+                    <a href="#" class="matches__match__more">more</a>
+
+                    <div class="matches__match__details matches__match__details--hidden">
+                        {% if company.email is defined %}
+                            <p class="matches__match__detail"><strong>Email:</strong> <a href="mailto:{{ company.email }}">{{ company.email }}</a></p>
+                        {% endif %}
+                        {% if company.phone is defined %}
+                            <p class="matches__match__detail"><strong>Phone:</strong> <a href="tel:{{ company.phone }}">{{ company.phone }}</a></p>
+                        {% endif %}
+                        {% if company.website is defined %}
+                            <p class="matches__match__detail"><strong>Website:</strong> <a href="{{ company.website }}">{{ company.website }}</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

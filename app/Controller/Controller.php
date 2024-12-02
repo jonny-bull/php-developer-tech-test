@@ -2,13 +2,20 @@
 
 namespace App\Controller;
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 abstract class Controller
 {
     protected $db;
+    protected $logger;
 
+    /**
+     * Creates a PDO database connection.
+     */
     protected function db()
     {
-        if (!$this->db) {
+        if ( !$this->db ) {
             try {
                 $this->db = new \PDO(
                     sprintf(
@@ -21,7 +28,7 @@ abstract class Controller
                     $_ENV['DB_USER'],
                     $_ENV['DB_PASSWORD']
                 );
-            } catch (\PDOException $e) {
+            } catch ( \PDOException $e ) {
                 throw $e;
             }
         }
@@ -30,12 +37,23 @@ abstract class Controller
     }
 
     /**
+     * Creates a Monolog logger that logs to 'logs/app.log' in the project root.
+     */
+    protected function logger()
+    {
+        $logger = new Logger( 'app' );
+        $logger->pushHandler( new StreamHandler( __DIR__ . '/../../logs/app.log' ) );
+
+        return $logger;
+    }
+
+    /**
      * Renders a twig template with the params provided.
      *
      * @param string $view
      * @param array $params
      */
-    protected function render(string $view, array $params = [])
+    protected function render( string $view, array $params = [] )
     {
         $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../resources/views');
         $twig = new \Twig\Environment($loader);

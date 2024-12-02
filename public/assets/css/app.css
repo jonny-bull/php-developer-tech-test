@@ -1,0 +1,122 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+    background-color: #fff;
+    color: #262626;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    max-width: 45rem;
+    padding: 2rem 1rem;
+    margin: auto;
+}
+
+.match-form__section,
+.matches__match {
+    margin: 2rem 0;
+}
+
+.match-form__section legend {
+    font-size: 1.5rem;
+    color: #52105b;
+    margin-bottom: 1rem;
+}
+
+.match-form__field {
+    display: flex;
+    justify-content: space-between;
+    margin: .75rem 0;
+}
+
+.match-form__field .required {
+    font-weight: 600;
+}
+
+.match-form__field input {
+    padding: .25rem;
+}
+
+.matches__title {
+    color: #52105b;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.matches__match {
+    border: 1px solid #d2d2d2;
+    box-shadow: 0 4px 7px 1px rgba(38,38,38,.1);
+    border-radius: .75rem;
+    padding: 1rem;
+}
+
+.matches__match__title {
+    color: #52105b;
+    font-size: 1.25rem;
+    margin-bottom: .75rem;
+}
+
+.matches__match__details {
+    margin-top: 1.5rem;
+}
+
+.matches__match__details--hidden {
+    display: none;
+}
+
+.matches__match__detail {
+    margin: .25rem 0;
+}
+
+.matches__match__detail strong {
+    font-weight: 600;
+}
